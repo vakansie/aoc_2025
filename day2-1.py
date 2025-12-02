@@ -4,7 +4,6 @@ def parse_input(file):
     ranges = []
     with open(file, 'r') as file:
         for line in file:
-            # print(line.strip())
             parts = line.strip().split(',')
             ranges.extend([tuple(map(int, part.split('-'))) for part in parts if part])
     return ranges
@@ -17,11 +16,7 @@ def is_repeating(digits:int):
 
     index = int(length / 2)
     first, last = string[:index], string[index:]
-    # print(first, last)
-    if first == last:
-        return True
-
-    return False
+    return first == last
 
 sum_of = 0
 ranges = parse_input(file)
