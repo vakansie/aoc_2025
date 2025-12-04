@@ -7,16 +7,17 @@ def parse_file(file):
 
 def find_max_joltage(bank:str) -> int:
     nums = set(bank)
-    highest = sorted(nums, reverse=True)
-    prime_jolt_spot = bank.index(highest[0])
+    highest = sorted(nums, reverse=True)[0]
+    prime_jolt_spot = bank.index(highest)
     if prime_jolt_spot == len(bank) - 1:
-        max_joltage = highest[1] + highest[0]
-        return int(max_joltage)
+        remaining_spots = bank[:prime_jolt_spot]
+        next_highest = sorted(set(remaining_spots), reverse=True)[0]
+        max_joltage = next_highest + highest
     else:
         remaining_spots = bank[prime_jolt_spot + 1:]
         next_highest = sorted(set(remaining_spots), reverse=True)[0]
-        max_joltage = highest[0] + next_highest
-        return int(max_joltage)
+        max_joltage = highest + next_highest
+    return int(max_joltage)
 
 banks = parse_file(file)
 total_joltage = 0
