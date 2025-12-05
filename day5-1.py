@@ -3,11 +3,9 @@ file = 'day5.txt'
 def parse_file(file):
     with open(file) as f:
         lines = [line.strip() for line in f.readlines()]
-
         range_lines = [tuple(map(int, num)) for num in [line.split('-') for line in lines if '-' in line]]
         id_lines = [int(line) for line in lines[len(range_lines) + 1:]]
         return range_lines, id_lines
-
 
 def count_fresh_ids(ranges: list[tuple[int,int]], ids: list[int]):
     fresh_count = 0
